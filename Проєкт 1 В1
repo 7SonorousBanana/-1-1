@@ -8,6 +8,10 @@ DATA_FILE = "events.json"
 # Робота з датами/часом
 
 def parse_date(date_str: str) -> Optional[str]:
+    """
+    Приймає дату у форматі YYYY-MM-DD.
+    Повертає нормалізовану дату (рядок) якщо все ок, або None якщо помилка.
+    """
     try:
         dt = datetime.strptime(date_str.strip(), "%Y-%m-%d").date()
         return dt.strftime("%Y-%m-%d")
@@ -71,6 +75,7 @@ def save_events(events: List[Dict]) -> None:
 
 
 def next_id(events: List[Dict]) -> int:
+    """Генерує наступний ID події."""
     if not events:
         return 1
     return max(ev.get("id", 0) for ev in events) + 1
@@ -250,6 +255,7 @@ def handle_delete(events: List[Dict], id_str: str) -> None:
 
 
 def handle_clear(events: List[Dict]) -> None:
+    """Видаляє всі події з підтвердженням."""
     if not events:
         print("Список подій і так порожній.")
         return
