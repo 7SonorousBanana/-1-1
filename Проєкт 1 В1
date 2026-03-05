@@ -46,7 +46,6 @@ def event_sort_key(ev: Dict) -> tuple:
 
 
 def today_str() -> str:
-    """Повертає сьогоднішню дату у форматі YYYY-MM-DD."""
     return date.today().strftime("%Y-%m-%d")
 
 # Збереження/завантаження
@@ -76,7 +75,6 @@ def save_events(events: List[Dict]) -> None:
 
 
 def next_id(events: List[Dict]) -> int:
-    """Генерує наступний ID події."""
     if not events:
         return 1
     return max(ev.get("id", 0) for ev in events) + 1
@@ -208,7 +206,7 @@ def handle_next(events: List[Dict], n: int = 5) -> None:
 
 
 def handle_search(events: List[Dict], query: str) -> None:
-    """Пошук за підрядком у назві або нотатці (без регістру)."""
+    """Пошук за підрядком у назві або нотатці"""
     q = query.strip().lower()
     if not q:
         print("Вкажи текст для пошуку. Приклад: пошук матаналіз")
@@ -256,7 +254,6 @@ def handle_delete(events: List[Dict], id_str: str) -> None:
 
 
 def handle_clear(events: List[Dict]) -> None:
-    """Видаляє всі події з підтвердженням."""
     if not events:
         print("Список подій і так порожній.")
         return
@@ -276,7 +273,7 @@ def main() -> None:
     events = load_events()
     events.sort(key=event_sort_key)
 
-    print("Бот 'Організатор подій' запущено.")
+    print("'Організатор подій' запущено.")
     print("Напиши 'help' щоб побачити команди.\n")
 
     while True:
